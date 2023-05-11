@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+#define MAX_FILES 100
+#define MAX_RECORDS 10
+
+struct File {
+    int record_id;
+    char record_data[100];
+};
+
+struct File files[MAX_FILES];
+
+int main() {
+    int num_files;
+    int i, j;
+
+    printf("Enter the number of files: ");
+    scanf("%d", &num_files);
+
+    // Initialize the files array
+    for (i = 0; i < num_files; i++) {
+        files[i].record_id = -1;
+    }
+
+    printf("Enter the files data:\n");
+    for (i = 0; i < num_files; i++) {
+        printf("Enter the record data for file %d: ", i + 1);
+        scanf("%s", files[i].record_data);
+        files[i].record_id = i;
+    }
+
+    // Reading the files
+    printf("Reading the files:\n");
+    for (i = 0; i < num_files; i++) {
+        for (j = 0; j <= i; j++) {
+            printf("Reading record %d from file %d: %s\n", j + 1, files[j].record_id + 1, files[j].record_data);
+        }
+    }
+
+    return 0;
+}
